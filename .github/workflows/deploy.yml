@@ -38,7 +38,7 @@ jobs:
       - name: Upload build artifacts complete
         uses: actions/upload-artifact@v4
         with:
-          name: build complete
+          name: build-complete
           path: dist/loginGoogle/browser
 
       - name: Clear old folder in S3
@@ -63,3 +63,5 @@ jobs:
 
       - name: Delete artifact from GitHub
         uses: geekyeggo/delete-artifact@v5
+        with:
+          name: build-complete
