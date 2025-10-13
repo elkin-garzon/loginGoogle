@@ -1,0 +1,33 @@
+name: deploy-mf to S3
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  actions-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: prestart script
+        run: npm run prestart
+        env:
+          PRODUCTION: true
+          APIKEY: ${{secrets.APIKEY}}
+          AUTHDOMAIN: ${{secrets.AUTHDOMAIN}}
+          PROJECTID: ${{secrets.PROJECTID}}
+          STORAGEBUCKET: ${{secrets.STORAGEBUCKET}}
+          MESSAGINGSENDERID: ${{secrets.MESSAGINGSENDERID}}
+          APPID: ${{secrets.APPID}}
+          MEASUREMENTID: ${{secrets.MEASUREMENTID}}
