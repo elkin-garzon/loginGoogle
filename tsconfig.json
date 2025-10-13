@@ -1,34 +1,45 @@
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "preserve"
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "typeCheckHostBindings": true,
-    "strictTemplates": true
-  },
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
-  ]
+	"compileOnSave": false,
+	"compilerOptions": {
+		"strict": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"skipLibCheck": true,
+		"isolatedModules": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"target": "ES2022",
+		"module": "preserve",
+		"paths": {
+			"@environments/*": ["./src/environments/*"],
+			"@pages/*": ["./src/app/pages/*"],
+			"@services/*": ["./src/app/services/*"],
+			"@interfaces/*": ["./src/app/interfaces/*"],
+			"@components/*": ["./src/app/components/*"],
+			"@helpers/*": ["./src/app/helpers/*"],
+			"@layouts/*": ["./src/app/layouts/*"],
+			"@typesPortafolio/*": ["./src/app/typesPortafolio/*"],
+			"@interceptors/*": ["./src/app/interceptors/*"],
+		}
+	},
+	"angularCompilerOptions": {
+		"enableI18nLegacyMessageIdFormat": false,
+		"strictInjectionParameters": true,
+		"strictInputAccessModifiers": true,
+		"typeCheckHostBindings": true,
+		"strictTemplates": true
+	},
+	"files": [],
+	"references": [
+		{
+			"path": "./tsconfig.app.json"
+		},
+		{
+			"path": "./tsconfig.spec.json"
+		}
+	]
 }
