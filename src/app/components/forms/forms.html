@@ -1,0 +1,14 @@
+
+@if(viewForms === 'login'){
+<div
+    class="grid grid-cols-1 w-full md:w-[350px] md:max-w-[700px] mx-auto rounded-2xl shadow-2xl overflow-hidden sm:grid-cols-1  animate-fade-in-scale">
+    <lg-forms-login (actionForm)="viewForm($event)" />
+</div>
+}
+
+@if(viewForms === 'signUp'){
+<div
+    class="grid grid-cols-1 w-full md:w-[350px] md:max-w-[700px] mx-auto rounded-2xl shadow-2xl overflow-hidden sm:grid-cols-1  animate-fade-in-scale">
+    <lg-forms-sing-up (actionForm)="viewForm($event)" />
+</div>
+}

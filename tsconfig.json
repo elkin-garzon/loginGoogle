@@ -25,6 +25,7 @@
 			"@layouts/*": ["./src/app/layouts/*"],
 			"@typesPortafolio/*": ["./src/app/typesPortafolio/*"],
 			"@interceptors/*": ["./src/app/interceptors/*"],
+			"@coreLoginGoogle/*": ["./src/app/core/*"],
 		}
 	},
 	"angularCompilerOptions": {
