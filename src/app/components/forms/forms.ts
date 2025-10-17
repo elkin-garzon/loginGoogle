@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
-// import { trigger, transition, style, animate } from '@angular/animations';
-
-import { FormsLogin } from '../forms-login/forms-login';
-import { FormsSingUp } from '@components/forms-sing-up/forms-sing-up';
+import { FormAuth } from '@components/form-auth/form-auth';
+import { LoginType, SignUpType } from '@typesPortafolio/index';
 
 @Component({
 	selector: 'lg-forms',
 	imports: [
-		FormsLogin,
-		FormsSingUp
+		FormAuth
 	],
 	templateUrl: './forms.html',
 })
@@ -19,5 +16,9 @@ export class Forms {
 
 	public viewForm(action: string) {
 		this.viewForms = action;
+	}
+
+	public handleDataFormAuth(data: LoginType | SignUpType) {
+		console.log(data);
 	}
 }
