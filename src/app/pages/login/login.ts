@@ -16,10 +16,6 @@ import { CustomValidators } from '@coreLoginGoogle/index'
 		Forms
 	],
 	templateUrl: './login.html',
-	providers: [
-		AuthS
-	]
 })
 export class Login {
-	private auth = inject(AuthS);
 }

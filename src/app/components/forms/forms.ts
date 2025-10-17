@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormAuth } from '@components/form-auth/form-auth';
 import { LoginType, SignUpType } from '@typesPortafolio/index';
-
+import { AuthS } from '@services/index';
 @Component({
 	selector: 'lg-forms',
 	imports: [
-		FormAuth
+		FormAuth,
 	],
 	templateUrl: './forms.html',
 })
 export class Forms {
 
+	private auth = inject(AuthS);
 	public viewForms = 'login';
 
 
@@ -19,6 +20,11 @@ export class Forms {
 	}
 
 	public handleDataFormAuth(data: LoginType | SignUpType) {
-		console.log(data);
+		if (data.hasOwnProperty('confirmPassword')) {
+			this.auth.register(data as SignUpType).then((res) => {
+				console.log('User registered:', res);
+				this.viewForms = 'login';
+			});
+		}
 	}
 }

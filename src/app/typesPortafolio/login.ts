@@ -20,3 +20,8 @@ export type SignUpType = {
 }
 
 export type signUpFormFormGroup = FormGroupFrom<SignUpType>;
+
+
+export type UserCreated = Omit<SignUpType, 'confirmPassword'> & {
+    uid: string;
+}
