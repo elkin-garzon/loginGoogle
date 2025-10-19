@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Firestore, collection, doc, setDoc } from '@angular/fire/firestore';
-import { SignUpType, UserCreated } from '@typesPortafolio/index';
+import { LoginType, SignUpType, UserCreated } from '@typesPortafolio/index';
 
 @Injectable({
 	providedIn: 'root'
@@ -25,6 +25,12 @@ export class AuthS {
 
 		await setDoc(doc(collection(this.firestore, 'Users'), actualUser.uid), newUser);
 		return newUser;
+	}
+
+	public async signIn(data: LoginType) {
+		const userCredential = await signInWithEmailAndPassword(this.auth, data.email, data.password);
+		const user = userCredential.user;
+		return user;
 	}
 
 	public async loginGoogle() {

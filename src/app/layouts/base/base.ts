@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { DarkMode } from '@components/index';
 
 @Component({
 	selector: 'lg-base',
 	imports: [
-		RouterOutlet
+		RouterOutlet,
+		DarkMode
 	],
 	templateUrl: './base.html'
 })
-export class Base {
-
-
-
-}
+export class Base {}

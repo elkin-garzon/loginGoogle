@@ -23,6 +23,11 @@ export const routes: Routes = [
                     provideFirestore(() => getFirestore()),
                     { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig },
                 ],
+            },
+            {
+                path: 'profile',
+                loadComponent: () => import('@pages/profile/profile').then(m => m.Profile),
+                providers: [],
             }
         ]
     }

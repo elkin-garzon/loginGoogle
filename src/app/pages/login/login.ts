@@ -1,21 +1,20 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DarkMode, Forms, Input, Title } from '@components/index';
-import { AuthS } from '@services/index';
-import { InputType, LoginFormGroup, signUpFormFormGroup } from '@typesPortafolio/index';
-import { CustomValidators } from '@coreLoginGoogle/index'
+import { Router } from '@angular/router';
+import { Forms } from '@components/index';
 
 @Component({
 	selector: 'lg-login',
 	imports: [
-		CommonModule,
-		ReactiveFormsModule,
-		DarkMode,
-		
-		Forms
+		Forms,
 	],
 	templateUrl: './login.html',
 })
 export class Login {
+
+	private router = inject(Router);
+
+	public handleSendData(event: any) {
+		console.log('Login successful, received data: ', event);
+		this.router.navigate(['/profile']);
+	}
 }
