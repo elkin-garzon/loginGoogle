@@ -11,18 +11,19 @@ export const routes: Routes = [
     {
         path: '',
         component: Base,
+        providers: [
+            AuthS,
+
+            provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+            provideAuth(() => getAuth()),
+            provideFirestore(() => getFirestore()),
+            { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig },
+        ],
         children: [
             {
                 path: 'login',
                 loadComponent: () => import('@pages/login/login').then(m => m.Login),
-                providers: [
-                    AuthS,
 
-                    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-                    provideAuth(() => getAuth()),
-                    provideFirestore(() => getFirestore()),
-                    { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig },
-                ],
             },
             {
                 path: 'profile',

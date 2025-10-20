@@ -1,7 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { Auth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { Firestore, collection, doc, setDoc } from '@angular/fire/firestore';
-import { LoginType, SignUpType, UserCreated } from '@typesPortafolio/index';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Firestore, collection, doc, getDoc, setDoc } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { LoginType, ResponseLogin, SignUpType, UserCreated } from '@typesPortafolio/index';
+import { map, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
@@ -22,15 +25,12 @@ export class AuthS {
 			name: data.name,
 			password: data.password
 		};
-
 		await setDoc(doc(collection(this.firestore, 'Users'), actualUser.uid), newUser);
-		return newUser;
 	}
 
-	public async signIn(data: LoginType) {
-		const userCredential = await signInWithEmailAndPassword(this.auth, data.email, data.password);
-		const user = userCredential.user;
-		return user;
+	public async signIn(data: LoginType): Promise<ResponseLogin> {
+		const userCredential = await signInWithEmailAndPassword(this.auth, data.email, data.password) as unknown as ResponseLogin;
+		return userCredential;
 	}
 
 	public async loginGoogle() {
@@ -39,5 +39,13 @@ export class AuthS {
 
 	public async loginGithub() {
 		return await signInWithPopup(this.auth, this.githubProvider);
+	}
+
+	public async getUserbyId(id: string) {
+		const userDoc = await getDoc(doc(this.firestore, 'Users', id));
+		if (userDoc.exists()) {
+			return { uid: id, ...userDoc.data() };
+		}
+		return null;
 	}
 }

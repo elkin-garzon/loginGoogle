@@ -14,7 +14,6 @@ export class Login {
 	private router = inject(Router);
 
 	public handleSendData(event: any) {
-		console.log('Login successful, received data: ', event);
 		this.router.navigate(['/profile']);
 	}
 }

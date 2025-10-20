@@ -31,6 +31,7 @@ export class FormAuth {
 	public modeForm = input.required<string>();
 	public actionForm = output<string>();
 	public dataFormAuth = output<LoginType | SignUpType>();
+	public signInGoogle = output<string>();
 
 	private form = inject(FormBuilder);
 
@@ -122,5 +123,9 @@ export class FormAuth {
 		if (this.formAuth.valid) {
 			this.dataFormAuth.emit(this.formAuth.getRawValue() as LoginType | SignUpType);
 		}
+	}
+
+	public async loginGoogle() {
+		this.signInGoogle.emit('google');
 	}
 }

@@ -13,7 +13,7 @@ export class Forms {
 
 	private auth = inject(AuthS);
 	public viewForms = 'login';
-	public sendData = output<LoginType | SignUpType>();
+	public sendData = output<LoginType | SignUpType | any>();
 
 	public viewForm(action: string) {
 		this.viewForms = action;
@@ -21,13 +21,25 @@ export class Forms {
 
 	public async handleDataFormAuth(data: LoginType | SignUpType) {
 		if (data.hasOwnProperty('confirmPassword')) {
-			this.auth.register(data as SignUpType).then((res) => {
-				console.log('User registered:', res);
-				this.viewForms = 'login';
-			});
+			await this.auth.register(data as SignUpType);
+			this.loginEmailAndPassword(data.email, data.password);
 			return;
 		}
-		let response = await this.auth.signIn(data as LoginType) as any;
+
+		this.loginEmailAndPassword(data.email, data.password);
+	}
+
+	private async loginEmailAndPassword(email: string, password: string) {
+		let response = await this.auth.signIn({ email, password });
+		localStorage.setItem('token', JSON.stringify(response));
 		this.sendData.emit(response);
+	}
+
+
+	public handleDataFormAuthGoogle(event: any) {
+		this.auth.loginGoogle().then((response) => {
+			this.sendData.emit(response);
+			localStorage.setItem('token', JSON.stringify(response));
+		});
 	}
 }
