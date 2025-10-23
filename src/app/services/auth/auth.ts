@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential, sendPasswordResetEmail } from '@angular/fire/auth';
+import { Auth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential, sendPasswordResetEmail, getAuth, onAuthStateChanged } from '@angular/fire/auth';
 import { Firestore, collection, doc, getDoc, setDoc } from '@angular/fire/firestore';
 import { LoginType, ProfileType, ResponseLogin, SignUpResponse, SignUpType, UserCreated } from '@typesPortafolio/index';
 import { Providers } from '@enums/providers';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
@@ -64,7 +65,7 @@ export class AuthS {
 
 
 	public async updateUser(data: ProfileType): Promise<ProfileType> {
-		await setDoc(doc(collection(this.firestore, 'Users'), data.uid), data);
+		await this.saveDataUser(data as SignUpResponse);
 		return data;
 	}
 
@@ -73,4 +74,15 @@ export class AuthS {
 		await setDoc(doc(collection(this.firestore, 'Users'), data.uid), data);
 		return data;
 	}
+
+	public userActivate$: Observable<boolean> = new Observable<boolean>((subscriber) => {
+		const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
+			if (user) {
+				subscriber.next(true);
+			} else {
+				subscriber.next(false);
+			}
+		});
+		return () => unsubscribe();
+	});
 }

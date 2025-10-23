@@ -4,6 +4,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { Routes } from '@angular/router';
 import { environment } from '@environments/environment';
+import { authGuard } from '@guards/auth-guard';
 import { Base } from '@layouts/base/base';
 import { AuthS } from '@services/auth/auth';
 
@@ -27,6 +28,7 @@ export const routes: Routes = [
             },
             {
                 path: 'profile',
+                canActivate: [authGuard],
                 loadComponent: () => import('@pages/profile/profile').then(m => m.Profile),
                 providers: [],
             }

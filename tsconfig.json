@@ -27,6 +27,7 @@
 			"@interceptors/*": ["./src/app/interceptors/*"],
 			"@coreLoginGoogle/*": ["./src/app/core/*"],
 			"@enums/*": ["./src/app/enums/*"],
+			"@guards/*": ["./src/app/guards/*"]
 		}
 	},
 	"angularCompilerOptions": {

@@ -29,7 +29,7 @@ export class Profile {
 		image: this.form.nonNullable.control('', [Validators.required]),
 		provider: this.form.nonNullable.control('', [Validators.required]),
 		phone: this.form.nonNullable.control('', []),
-		
+
 	});
 
 	public inputsData: InputType[] = this.createItemsForm();
@@ -42,6 +42,7 @@ export class Profile {
 	};
 
 	ngOnInit() {
+		// this.auth.getStatusAuth()
 		let data = JSON.parse(localStorage.getItem('token')!);
 		if (data.uid) {
 			this.auth.getUserbyId(data.uid).then(user => {
@@ -58,7 +59,7 @@ export class Profile {
 				}
 			});
 			return;
-		}		
+		}
 	}
 
 	private createItemsForm(): InputType[] {
@@ -95,6 +96,7 @@ export class Profile {
 	}
 
 	public async onSubmit() {
+		this.formProfile.get('email')?.enable();
 		await this.auth.updateUser(this.formProfile.value as ProfileType);
 	}
 }
