@@ -22,10 +22,24 @@ export type SignUpType = {
 export type signUpFormFormGroup = FormGroupFrom<SignUpType>;
 
 
-export type UserCreated = Omit<SignUpType, 'confirmPassword'> & {
+export type UserCreated = Omit<LoginType, 'password'> & {
     uid: string;
+    name: string;
+    image: string;
+    provider: string;
 }
 
+export type ProfileType = {
+    uid: string;
+    name: string;
+    lastname: string;
+    image: string;
+    provider: string;
+    phone: string;
+    email: string;
+}
+
+export type UserCreatedFormGroup = FormGroupFrom<ProfileType>;
 
 export type ResponseLogin = {
     user: User;
@@ -84,4 +98,14 @@ export type StsTokenManager = {
     refreshToken: string;
     accessToken: string;
     expirationTime: number;
+}
+
+
+
+export type SignUpResponse = {
+    uid: string,
+    email: string,
+    name: string,
+    image: string,
+    provider: string,
 }

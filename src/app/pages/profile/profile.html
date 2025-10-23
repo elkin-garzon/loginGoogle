@@ -1,1 +1,11 @@
-<p>profile works!</p>
+<lg-title titleText="Profile" />
+<form [formGroup]="formProfile" class="grid grid-cols-1 sm:grid-cols-4 gap-4 items-start mt-4" (ngSubmit)="onSubmit()">
+    
+    <section class="sm:col-span-2 sm:col-start-2">
+        <lg-input-file [inputData]="inputsDataFile" />
+        @for (item of inputsData; track $index) {
+        <lg-input [inputData]="item" />
+        }
+        <button type="submit" class="bg-blue-600 mt-4 w-full border border-blue-600 text-white rounded-md p-2 hover:bg-blue-700 hover:border-blue-700 disabled:opacity-50 font-medium cursor-pointer">Save</button>
+    </section>
+</form>

@@ -26,6 +26,7 @@
 			"@typesPortafolio/*": ["./src/app/typesPortafolio/*"],
 			"@interceptors/*": ["./src/app/interceptors/*"],
 			"@coreLoginGoogle/*": ["./src/app/core/*"],
+			"@enums/*": ["./src/app/enums/*"],
 		}
 	},
 	"angularCompilerOptions": {

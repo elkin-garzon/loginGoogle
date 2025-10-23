@@ -21,7 +21,7 @@ export class Forms {
 
 	public async handleDataFormAuth(data: LoginType | SignUpType) {
 		if (data.hasOwnProperty('confirmPassword')) {
-			await this.auth.register(data as SignUpType);
+			await this.auth.register(data as SignUpType, 'emailPassword');
 			this.loginEmailAndPassword(data.email, data.password);
 			return;
 		}
