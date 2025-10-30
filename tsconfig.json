@@ -19,12 +19,9 @@
 			"@environments/*": ["./src/environments/*"],
 			"@pages/*": ["./src/app/pages/*"],
 			"@services/*": ["./src/app/services/*"],
-			"@interfaces/*": ["./src/app/interfaces/*"],
 			"@components/*": ["./src/app/components/*"],
-			"@helpers/*": ["./src/app/helpers/*"],
 			"@layouts/*": ["./src/app/layouts/*"],
 			"@typesPortafolio/*": ["./src/app/typesPortafolio/*"],
-			"@interceptors/*": ["./src/app/interceptors/*"],
 			"@coreLoginGoogle/*": ["./src/app/core/*"],
 			"@enums/*": ["./src/app/enums/*"],
 			"@guards/*": ["./src/app/guards/*"]
