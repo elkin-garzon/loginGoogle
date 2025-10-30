@@ -8,7 +8,7 @@ import { authGuard } from '@guards/auth-guard';
 import { Base } from '@layouts/base/base';
 import { AuthS } from '@services/auth/auth';
 
-export const routes: Routes = [
+export const ROUTES_LOGIN_GOOGLE: Routes = [
     {
         path: '',
         component: Base,
