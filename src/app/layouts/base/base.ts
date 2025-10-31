@@ -15,4 +15,15 @@ export class Base {
 
 
 	private auth = inject(AuthS);
+
+	ngOnInit(): void {
+		const theme = localStorage.getItem('theme');
+		const browserDark = window.matchMedia('(prefers-color-scheme: dark)').matches; if (theme !== null) {
+			if (theme === 'dark') {
+				document.documentElement.classList.add('dark');
+			}
+		} else if (browserDark) {
+			document.documentElement.classList.add('dark');
+		}
+	}
 }
